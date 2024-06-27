@@ -1,14 +1,14 @@
 package io.github.defective4.minecraft.voidbox.packets;
 
-import io.github.defective4.minecraft.voidbox.data.CraftDataTypes;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import io.github.defective4.minecraft.voidbox.data.CraftDataTypes;
+
 public class HandshakePacket extends Packet {
 
-    private final int protocol, state, port;
     private final String host;
+    private final int protocol, state, port;
 
     /**
      * A constructor for incoming packets
@@ -24,19 +24,19 @@ public class HandshakePacket extends Packet {
         state = in.readByte();
     }
 
-    public int getProtocol() {
-        return protocol;
-    }
-
-    public int getState() {
-        return state;
+    public String getHost() {
+        return host;
     }
 
     public int getPort() {
         return port;
     }
 
-    public String getHost() {
-        return host;
+    public int getProtocol() {
+        return protocol;
+    }
+
+    public int getState() {
+        return state;
     }
 }

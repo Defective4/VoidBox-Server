@@ -1,12 +1,15 @@
 package io.github.defective4.minecraft.voidbox.packets;
 
-import io.github.defective4.minecraft.voidbox.data.GameState;
-import io.github.defective4.minecraft.voidbox.packets.in.status.ClientStatusPingPacket;
-import io.github.defective4.minecraft.voidbox.packets.in.status.ClientStatusRequestPacket;
-
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
+
+import io.github.defective4.minecraft.voidbox.data.GameState;
+import io.github.defective4.minecraft.voidbox.packets.in.login.ClientLoginStartPacket;
+import io.github.defective4.minecraft.voidbox.packets.in.play.ClientPlayChatMessagePacket;
+import io.github.defective4.minecraft.voidbox.packets.in.play.ClientPlayKeepAlivePacket;
+import io.github.defective4.minecraft.voidbox.packets.in.status.ClientStatusPingPacket;
+import io.github.defective4.minecraft.voidbox.packets.in.status.ClientStatusRequestPacket;
 
 /**
  * A class containing all packet references by their ID
@@ -23,13 +26,14 @@ public class PacketRegistry {
 
         PACKETS.put(GameState.PLAY, new ConcurrentHashMap<Integer, Class<? extends Packet>>() {
             {
-
+                put(0x03, ClientPlayChatMessagePacket.class);
+                put(0x10, ClientPlayKeepAlivePacket.class);
             }
         });
 
         PACKETS.put(GameState.LOGIN, new ConcurrentHashMap<Integer, Class<? extends Packet>>() {
             {
-
+                put(0x00, ClientLoginStartPacket.class);
             }
         });
 

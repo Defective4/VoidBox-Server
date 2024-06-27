@@ -4,5 +4,5 @@ package io.github.defective4.minecraft.voidbox.data;
  * Enum containing all possible connection states
  */
 public enum GameState {
-    HANDSHAKE, STATUS, LOGIN, PLAY
+    HANDSHAKE, LOGIN, PLAY, STATUS
 }

@@ -7,9 +7,28 @@ import com.google.gson.Gson;
  */
 public class ServerStatusResponse {
 
-    final Players players;
-    final Version version;
+    public static class Players {
+        final int online, max;
+
+        public Players(int online, int max) {
+            this.online = online;
+            this.max = max;
+        }
+    }
+    public static class Version {
+        final String name;
+        final int protocol;
+
+        public Version(int protocol, String name) {
+            this.protocol = protocol;
+            this.name = name;
+        }
+    }
     final String description;
+
+    final Players players;
+
+    final Version version;
 
     public ServerStatusResponse(Players players, Version version, String description) {
         this.players = players;
@@ -19,24 +38,5 @@ public class ServerStatusResponse {
 
     public String toJson() {
         return new Gson().toJson(this);
-    }
-
-    public static class Players {
-        final int online, max;
-
-        public Players(int online, int max) {
-            this.online = online;
-            this.max = max;
-        }
-    }
-
-    public static class Version {
-        final int protocol;
-        final String name;
-
-        public Version(int protocol, String name) {
-            this.protocol = protocol;
-            this.name = name;
-        }
     }
 }

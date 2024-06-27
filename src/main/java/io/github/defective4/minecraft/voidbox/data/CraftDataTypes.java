@@ -1,13 +1,15 @@
 package io.github.defective4.minecraft.voidbox.data;
 
 import java.io.DataInputStream;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 /**
- * An "utility" class that will contain all methods required to write
- * and read Minecraft-specific data types.
+ * An "utility" class that will contain all methods required to write and read
+ * Minecraft-specific data types.
  */
 public class CraftDataTypes {
 
@@ -18,12 +20,6 @@ public class CraftDataTypes {
             size++;
         } while (value != 0);
         return size;
-    }
-
-    public static void writeString(OutputStream os, String value) throws IOException {
-        byte[] data = value.getBytes(StandardCharsets.UTF_8);
-        writeVarInt(os, data.length);
-        os.write(data);
     }
 
     public static String readString(DataInputStream is) throws IOException {
@@ -38,14 +34,23 @@ public class CraftDataTypes {
         byte read;
         do {
             read = in.readByte();
-            int value = (read & 0b01111111);
-            result |= (value << (7 * numRead));
+            int value = read & 0b01111111;
+            result |= value << 7 * numRead;
             numRead++;
-            if (numRead > 5) {
-                throw new RuntimeException("VarInt is too big");
-            }
+            if (numRead > 5) { throw new RuntimeException("VarInt is too big"); }
         } while ((read & 0b10000000) != 0);
         return result;
+    }
+
+    public static void writeString(OutputStream os, String value) throws IOException {
+        byte[] data = value.getBytes(StandardCharsets.UTF_8);
+        writeVarInt(os, data.length);
+        os.write(data);
+    }
+
+    public static void writeUUID(DataOutput output, UUID value) throws IOException {
+        output.writeLong(value.getMostSignificantBits());
+        output.writeLong(value.getLeastSignificantBits());
     }
 
     public static void writeVarInt(OutputStream out, int value) throws IOException {

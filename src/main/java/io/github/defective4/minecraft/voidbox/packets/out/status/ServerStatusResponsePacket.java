@@ -1,9 +1,9 @@
 package io.github.defective4.minecraft.voidbox.packets.out.status;
 
+import java.io.IOException;
+
 import io.github.defective4.minecraft.voidbox.data.CraftDataTypes;
 import io.github.defective4.minecraft.voidbox.packets.Packet;
-
-import java.io.IOException;
 
 public class ServerStatusResponsePacket extends Packet {
 

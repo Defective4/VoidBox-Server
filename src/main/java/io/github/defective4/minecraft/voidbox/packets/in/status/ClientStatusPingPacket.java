@@ -1,12 +1,12 @@
 package io.github.defective4.minecraft.voidbox.packets.in.status;
 
-import io.github.defective4.minecraft.voidbox.packets.Packet;
-
 import java.io.IOException;
 
+import io.github.defective4.minecraft.voidbox.packets.Packet;
+
 /**
- * Ping packet is sent by client after receiving server status in Server List Ping sequence.
- * It is used to determine latency between client and server.
+ * Ping packet is sent by client after receiving server status in Server List
+ * Ping sequence. It is used to determine latency between client and server.
  */
 public class ClientStatusPingPacket extends Packet {
 

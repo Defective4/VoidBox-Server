@@ -1,8 +1,8 @@
 package io.github.defective4.minecraft.voidbox.packets.in.status;
 
-import io.github.defective4.minecraft.voidbox.packets.Packet;
-
 import java.io.IOException;
+
+import io.github.defective4.minecraft.voidbox.packets.Packet;
 
 public class ClientStatusRequestPacket extends Packet {
     /**
